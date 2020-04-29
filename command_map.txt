@@ -1,0 +1,14 @@
+ls: Run ls on server
+!ls: Run ls on client
+cd: Navigate on server
+!cd: Navigate on client
+pwd: Print working directory on server
+!pwd: Print working directory on client
+get: Transfer file from server to client
+mkdir: Create a directory on server
+!mkdir: Create a directory on client
+rm: Remove a file or directory on server
+!rm: Remove a file or directory on client
+sys: Print system running on server
+!sys: Print system running on client
+user: Authenticating user (username, and password)

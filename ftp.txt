@@ -1,0 +1,65 @@
+RFC: 959
+Deadline: 20th September
+Python library for FTP authorization.
+Change directories locally and remotely.
+Every program has a current working directory, which can be interacted with
+using functions getcwd() and setcwd().
+ls on remote server.
+Normal linux commands must work on the FTP.
+Reply should be sent with a response number (in RFC).
+get, mget, put, mput for file transfer.
+Data sent over parallel TCP connection.
+2 ports for FTP (control and data? verify).
+FTP server should be multihreaded.
+Grading will be relative.
+Minimum Req: Transfer files
+Ideally: Transfer data between all machines
+Challenge: Ensure endian-ness of machines before transfer.
+    Conversion might be required.
+
+FTP can also be used for server to server 3rd party transfer.
+Control connection between client and server 1.
+Data connection between server 1 and server 2.
+Active and Passive FTP.
+
+
+
+client {
+    opens TCP connection
+    loop {
+        show prompt;
+        read command; //interpretation
+        switch(command) {
+            "ls":
+                sends ls to server
+                receives response code and Data
+                shows on client screen
+            "get filename":
+                extract filename from args;
+                Open new data connection
+                send get and filename on data connection
+                //Where to send filename? Control or data connection?
+        }
+    }
+}
+
+server {
+    binds to listen port //20
+    listen;
+    accept
+    spawn thread
+    thread {
+        waiting for data(command)
+        switch(command) {
+            LS: runs the local ls() function //LS is the macro
+                d = readdir() //d  is array of dir entries
+                convert d to string
+                write string to control connection
+            GET:
+                //Who will open data connection?
+                Open new tcp connection for file transfer
+                read file, send file on this connection
+                close connection
+        }
+    }
+}
