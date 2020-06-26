@@ -1,5 +1,5 @@
 # ftp
-Implemented the File Transfer Protocol from scratch using Python
+Implemented the File Transfer Protocol from scratch using socket programming in Python.
 
 <strong>USAGE: </strong>
 1. For SERVER: python3 server.py {port number}
